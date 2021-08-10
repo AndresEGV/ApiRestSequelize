@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
     if (!req.body.title) {
         res.status(400).send({
-            message: "Content can not be empty!",
+            message: "Contenido no puede estar vacio!",
         });
         return;
     }
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Tutorial.",
+                message: err.message || "Ocurrio un error.",
             });
         });
 };
@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving tutorials.",
+                message: err.message || "Ocurrio un error",
             });
         });
 };
@@ -61,7 +61,7 @@ exports.findOne = (req, res) => {
         })
         .catch((err) => {
             res.status(500).send({
-                message: "Error retrieving Tutorial with id=" + id,
+                message: "Erro al buscar tutorial con id" + id,
             });
         });
 };
@@ -76,17 +76,17 @@ exports.update = (req, res) => {
         .then((num) => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was updated successfully.",
+                    message: "Tutorial editado exitosamente.",
                 });
             } else {
                 res.send({
-                    message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
+                    message: `No se puede editar tutorial con id=${id}`,
                 });
             }
         })
         .catch((err) => {
             res.status(500).send({
-                message: "Error updating Tutorial with id=" + id,
+                message: "Error al editar tutorial con id=" + id,
             });
         });
 };
@@ -101,17 +101,17 @@ exports.delete = (req, res) => {
         .then((num) => {
             if (num == 1) {
                 res.send({
-                    message: "Tutorial was deleted successfully!",
+                    message: "Tutorial borrado exitosamente!",
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+                    message: `No se puede borrar tutorial con id=${id}. `,
                 });
             }
         })
         .catch((err) => {
             res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id,
+                message: "No se puede borrar tutorial con id=" + id,
             });
         });
 };
@@ -123,11 +123,13 @@ exports.deleteAll = (req, res) => {
             truncate: false,
         })
         .then((nums) => {
-            res.send({ message: `${nums} Tutorials were deleted successfully!` });
+            res.send({
+                message: `${nums} Tutoriales fueron eliminados exitosamente!`,
+            });
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || "Some error occurred while removing all tutorials.",
+                message: err.message || "Ocurrio un error.",
             });
         });
 };
@@ -140,7 +142,7 @@ exports.findAllPublished = (req, res) => {
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving tutorials.",
+                message: err.message || "Ocurrio un error",
             });
         });
 };
